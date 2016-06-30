@@ -12,6 +12,13 @@ if (Meteor.isClient) {
 			return PlayerList.find();
 		}
 	});
+
+
+	Template.leaderboard.events({
+		'click .player': function () {
+			console.log(this);
+		}
+	});
 }
 
 if (Meteor.isServer) {
