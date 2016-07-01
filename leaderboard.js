@@ -17,6 +17,11 @@ if (Meteor.isClient) {
 			if (this._id == selectedPlayer) {
 				return "selected";
 			}
+		},
+
+		'selectedPlayer' : function () {
+			selectedPlayer = Session.get('selectedPlayer');
+			return PlayerList.findOne({ _id : selectedPlayer });
 		}
 	});
 
@@ -29,6 +34,11 @@ if (Meteor.isClient) {
 		'click .increment' : function () {
 			selectedPlayer = Session.get('selectedPlayer');
 			PlayerList.update( { _id : selectedPlayer }, { $inc : { score : 5 } } );
+		},
+
+		'click .decrement' : function () {
+			selectedPlayer = Session.get('selectedPlayer');
+			PlayerList.update( { _id : selectedPlayer }, { $inc : { score : -5 } } );
 		}
 	});
 }
