@@ -24,6 +24,11 @@ if (Meteor.isClient) {
 	Template.leaderboard.events({
 		'click .player': function () {
 			Session.set('selectedPlayer', this._id );
+		},
+
+		'click .increment' : function () {
+			selectedPlayer = Session.get('selectedPlayer');
+			PlayerList.update( { _id : selectedPlayer }, { $inc : { score : 5 }} );
 		}
 	});
 }
