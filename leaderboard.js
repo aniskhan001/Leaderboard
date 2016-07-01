@@ -10,16 +10,20 @@ if (Meteor.isClient) {
 	Template.leaderboard.helpers ({
 		'player' : function () {
 			return PlayerList.find();
+		},
+
+		'selectedClass' : function () {
+			selectedPlayer = Session.get('selectedPlayer')
+			if (this._id == selectedPlayer) {
+				return "selected";
+			}
 		}
 	});
 
 
 	Template.leaderboard.events({
 		'click .player': function () {
-			Session.set('selectedPlayer', 'the selected player name is ' + this.name );
-			selectedPlayer = Session.get('selectedPlayer');
-			console.log(selectedPlayer);
-			// console.log(this.name)
+			Session.set('selectedPlayer', this._id );
 		}
 	});
 }
