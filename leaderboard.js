@@ -9,7 +9,7 @@ if (Meteor.isClient) {
 	// console.log('Hello Client');
 	Template.leaderboard.helpers ({
 		'player' : function () {
-			return PlayerList.find();
+			return PlayerList.find( {}, { sort: { score: -1 } } );
 		},
 
 		'selectedClass' : function () {
@@ -28,7 +28,7 @@ if (Meteor.isClient) {
 
 		'click .increment' : function () {
 			selectedPlayer = Session.get('selectedPlayer');
-			PlayerList.update( { _id : selectedPlayer }, { $inc : { score : 5 }} );
+			PlayerList.update( { _id : selectedPlayer }, { $inc : { score : 5 } } );
 		}
 	});
 }
