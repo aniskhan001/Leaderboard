@@ -25,7 +25,7 @@ if (Meteor.isClient) {
 		}
 	});
 
-
+	// Events: Leaderboard CRUD
 	Template.leaderboard.events({
 		'click .player': function () {
 			Session.set('selectedPlayer', this._id );
@@ -39,6 +39,15 @@ if (Meteor.isClient) {
 		'click .decrement' : function () {
 			selectedPlayer = Session.get('selectedPlayer');
 			PlayerList.update( { _id : selectedPlayer }, { $inc : { score : -5 } } );
+		}
+	});
+
+	// Events: Adding players
+	Template.addPlayerForm.events({
+		'submit form': function (evt) {
+			evt.preventDefault();
+			playerName = evt.target.playerName.value; // getting it from the form
+			PlayerList.insert( { name: playerName, score: 0 } );
 		}
 	});
 }

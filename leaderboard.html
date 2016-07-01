@@ -3,9 +3,16 @@
 </head>
 <body>
     <h1>Leaderboard</h1>
+    {{> addPlayerForm}}
     {{> leaderboard}}
 </body>
 
+<template name="addPlayerForm">
+	<form>
+		<input type="text" name="playerName">
+		<input type="submit" value="Add new player">
+	</form>
+</template>
 
 <template name="leaderboard">
 	<p>Hello World!</p>
